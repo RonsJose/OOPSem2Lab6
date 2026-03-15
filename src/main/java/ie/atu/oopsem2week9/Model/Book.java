@@ -1,16 +1,25 @@
 package ie.atu.oopsem2week9.Model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+import java.time.LocalDate;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
 public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @PositiveOrZero(message = "Must enter a number >= 0")
-    @NotEmpty(message = "Must enter a room number")
     private int roomNumber;
 
     @NotEmpty(message = "Must enter a email")
@@ -19,7 +28,7 @@ public class Book {
 
 
     @NotNull(message = "Must enter a date")
-    private String bookingDate;
+    private LocalDate bookingDate;
 
     @Min(value=0,message = "Value too low for start hour")
     @Max(value=23,message = "Value too high for start hour")

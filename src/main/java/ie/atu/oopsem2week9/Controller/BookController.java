@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -34,4 +35,15 @@ public class BookController {
     public ResponseEntity<Book> showBook(@PathVariable long id){
         return ResponseEntity.ok(bookService.getBookById(id));
     }
+
+    @GetMapping("/date/{date}")
+    public ResponseEntity<List<Book>> showBooksByDate(@PathVariable LocalDate date){
+        return ResponseEntity.ok(bookService.getAllBooksByDate(date));
+    }
+
+    @GetMapping("/room/{roomId}/{date}")
+    public  ResponseEntity<List<Book>> showBooksByRoom(@PathVariable long roomId, @PathVariable LocalDate date){
+        return ResponseEntity.ok(bookService.getAllBooksByRoomNumberAndDate(roomId, date));
+    }
+
 }
