@@ -7,6 +7,7 @@ import ie.atu.oopsem2week9.repository.ReservationRepo;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -55,7 +56,15 @@ public class BookService {
     }
 
     public List<Book> getAllBooksByRoomNumberAndDate(Long bookingNumber, LocalDate bookingDate) {
-        return reservationRepository.findByRoomNumberAndDate(bookingNumber, bookingDate);
+        return reservationRepository.findByRoomNumberAndBookingDate(bookingNumber, bookingDate);
+    }
+
+    public List<Book> getBooksByDateAndTime(LocalDate date, int StartTime, int EndTime) {
+        return reservationRepository.findByBookingDateAndStartHour(date, StartTime, EndTime);
+    }
+
+    public List<Book> getBooksbyEmail(String email) {
+        return reservationRepository.findByStudentEmail(email);
     }
 
 }

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -41,9 +42,19 @@ public class BookController {
         return ResponseEntity.ok(bookService.getAllBooksByDate(date));
     }
 
-    @GetMapping("/room/{roomId}/{date}")
+    @GetMapping("/room/{roomId}{date}")
     public  ResponseEntity<List<Book>> showBooksByRoom(@PathVariable long roomId, @PathVariable LocalDate date){
         return ResponseEntity.ok(bookService.getAllBooksByRoomNumberAndDate(roomId, date));
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<List<Book>> showBooksByEmail(@PathVariable String email){
+        return ResponseEntity.ok(bookService.getBooksbyEmail(email));
+    }
+
+    @GetMapping("/Date/Time/{date}{time1}{time2}")
+    public ResponseEntity<List<Book>> showBooksByDate(@PathVariable LocalDate date, @PathVariable int time1, @PathVariable int time2){
+        return ResponseEntity.ok(bookService.getBooksByDateAndTime(date, time1, time2));
     }
 
 }
