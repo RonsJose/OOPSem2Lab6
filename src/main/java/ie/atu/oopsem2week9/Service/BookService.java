@@ -55,12 +55,12 @@ public class BookService {
         return reservationRepository.findByBookingDate(bookingDate);
     }
 
-    public List<Book> getAllBooksByRoomNumberAndDate(Long bookingNumber, LocalDate bookingDate) {
+    public List<Book> getAllBooksByRoomNumberAndDate(int bookingNumber, LocalDate bookingDate) {
         return reservationRepository.findByRoomNumberAndBookingDate(bookingNumber, bookingDate);
     }
 
     public List<Book> getBooksByDateAndTime(LocalDate date, int StartTime, int EndTime) {
-        return reservationRepository.findByBookingDateAndStartHour(date, StartTime, EndTime);
+        return reservationRepository.findByBookingDateAndStartHourBetween(date, StartTime, EndTime);
     }
 
     public List<Book> getBooksbyEmail(String email) {
