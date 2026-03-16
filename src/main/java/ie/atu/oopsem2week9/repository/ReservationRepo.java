@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface ReservationRepo extends JpaRepository<Book, Long> {
     List<Book> findByBookingDate(LocalDate bookingDate);
-    List<Book> findByRoomNumberAndBookingDate(Long bookingNumber, LocalDate bookingDate);
+    List<Book> findByRoomNumberAndBookingDate(int bookingNumber, LocalDate bookingDate);
 
-    List<Book> findByBookingDateAndStartHour(LocalDate bookingDate, int StartTime, int EndTime);
+    List<Book> findByBookingDateAndStartHourBetween(LocalDate bookingDate, int StartTime, int EndTime);
     List<Book> findByStudentEmail(String studentEmail);
 }

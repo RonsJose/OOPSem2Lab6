@@ -42,8 +42,8 @@ public class BookController {
         return ResponseEntity.ok(bookService.getAllBooksByDate(date));
     }
 
-    @GetMapping("/room/{roomId}{date}")
-    public  ResponseEntity<List<Book>> showBooksByRoom(@PathVariable long roomId, @PathVariable LocalDate date){
+    @GetMapping("/room/{roomId}/date/{date}")
+    public  ResponseEntity<List<Book>> showBooksByRoom(@PathVariable int roomId, @PathVariable LocalDate date){
         return ResponseEntity.ok(bookService.getAllBooksByRoomNumberAndDate(roomId, date));
     }
 
@@ -52,7 +52,7 @@ public class BookController {
         return ResponseEntity.ok(bookService.getBooksbyEmail(email));
     }
 
-    @GetMapping("/Date/Time/{date}{time1}{time2}")
+    @GetMapping("/Date/{date}/Time1/{time1}/time2/{time2}")
     public ResponseEntity<List<Book>> showBooksByDate(@PathVariable LocalDate date, @PathVariable int time1, @PathVariable int time2){
         return ResponseEntity.ok(bookService.getBooksByDateAndTime(date, time1, time2));
     }
